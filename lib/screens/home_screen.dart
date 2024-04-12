@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields, library_private_types_in_public_api, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -5,14 +7,14 @@ import 'package:video_thumbnail/video_thumbnail.dart';
 import '../widgets/image_widget.dart';
 import '../widgets/video_images.dart';
 
-class DemoHome extends StatefulWidget {
-  const DemoHome({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  _DemoHomeState createState() => _DemoHomeState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _DemoHomeState extends State<DemoHome> {
+class _HomeScreenState extends State<HomeScreen> {
   final _editNode = FocusNode();
   final _video = TextEditingController(
     text:
@@ -126,26 +128,6 @@ class _DemoHomeState extends State<DemoHome> {
             child: const Icon(Icons.videocam),
           ),
           const SizedBox(width: 5.0),
-          FloatingActionButton(
-            tooltip: "Generate a data of thumbnail",
-            onPressed: () async {
-              setState(() {
-                _futureImage = GenThumbnailImage(
-                  thumbnailRequest: ThumbnailRequest(
-                    video: _video.text,
-                    thumbnailPath: "",
-                    imageFormat: _format,
-                    maxHeight: _sizeH,
-                    maxWidth: _sizeW,
-                    timeMs: _timeMs,
-                    quality: _quality,
-                  ),
-                  key: UniqueKey(),
-                );
-              });
-            },
-            child: const Text("Data"),
-          ),
           const SizedBox(width: 5.0),
           FloatingActionButton(
             tooltip: "Generate a file of thumbnail",

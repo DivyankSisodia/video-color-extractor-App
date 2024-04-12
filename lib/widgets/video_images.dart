@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_print
+
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';

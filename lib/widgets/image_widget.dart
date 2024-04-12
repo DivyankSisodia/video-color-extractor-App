@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, deprecated_member_use, library_private_types_in_public_api
+
 import 'package:color_extractor/widgets/video_images.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -5,8 +7,7 @@ import 'package:video_player/video_player.dart';
 class GenThumbnailImage extends StatefulWidget {
   final ThumbnailRequest thumbnailRequest;
 
-  const GenThumbnailImage({Key? key, required this.thumbnailRequest})
-      : super(key: key);
+  const GenThumbnailImage({super.key, required this.thumbnailRequest});
 
   @override
   _GenThumbnailImageState createState() => _GenThumbnailImageState();
