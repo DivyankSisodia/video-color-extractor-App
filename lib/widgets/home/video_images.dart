@@ -45,39 +45,24 @@ class ThumbnailResult {
 Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
   Uint8List bytes;
   final Completer<ThumbnailResult> completer = Completer();
-  if (r.thumbnailPath != null) {
-    final thumbnailPath = await VideoThumbnail.thumbnailFile(
-      video: r.video,
-      headers: {
-        "USERHEADER1": "user defined header1",
-        "USERHEADER2": "user defined header2",
-      },
-      thumbnailPath: r.thumbnailPath,
-      imageFormat: r.imageFormat,
-      maxHeight: r.maxHeight,
-      maxWidth: r.maxWidth,
-      timeMs: r.timeMs,
-      quality: r.quality,
-    );
+  final thumbnailPath = await VideoThumbnail.thumbnailFile(
+    video: r.video,
+    headers: {
+      "USERHEADER1": "user defined header1",
+      "USERHEADER2": "user defined header2",
+    },
+    thumbnailPath: r.thumbnailPath,
+    imageFormat: r.imageFormat,
+    maxHeight: r.maxHeight,
+    maxWidth: r.maxWidth,
+    timeMs: r.timeMs,
+    quality: r.quality,
+  );
 
-    print("thumbnail file is located: $thumbnailPath");
+  print("thumbnail file is located: $thumbnailPath");
 
-    final file = File(thumbnailPath!);
-    bytes = file.readAsBytesSync();
-  } else {
-    bytes = (await VideoThumbnail.thumbnailData(
-      video: r.video,
-      headers: {
-        "USERHEADER1": "user defined header1",
-        "USERHEADER2": "user defined header2",
-      },
-      imageFormat: r.imageFormat,
-      maxHeight: r.maxHeight,
-      maxWidth: r.maxWidth,
-      timeMs: r.timeMs,
-      quality: r.quality,
-    ))!;
-  }
+  final file = File(thumbnailPath!);
+  bytes = file.readAsBytesSync();
 
   int _imageDataSize = bytes.length;
   print("image size: $_imageDataSize");

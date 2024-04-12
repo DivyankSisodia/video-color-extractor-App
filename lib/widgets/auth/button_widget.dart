@@ -17,12 +17,12 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.all(25.0),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(50.0),
-          // bottomRight: Radius.circular(25.0),
+          bottomRight: Radius.circular(25.0),
         ),
       ),
       child: Text(

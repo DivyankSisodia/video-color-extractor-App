@@ -1,13 +1,15 @@
+import 'package:color_extractor/screens/home_screen.dart';
 import 'package:color_extractor/screens/signup_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/auth_button.dart';
-import '../widgets/divider_widget.dart';
-import '../widgets/forgot_password.dart';
-import '../widgets/social_media_icon.dart';
-import '../widgets/text_fields.dart';
+import '../widgets/auth/auth_button.dart';
+import '../widgets/auth/divider_widget.dart';
+import '../widgets/auth/forgot_password.dart';
+import '../widgets/auth/social_media_icon.dart';
+import '../widgets/auth/text_fields.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -85,7 +87,19 @@ class _LoginScreenState extends State<LoginScreen> {
                               const Gap(3),
                               const ForgotPassword(),
                               const Gap(20),
-                              const AuthButton(text: 'Sign In',),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const HomeScreen(),
+                                    ),
+                                  );
+                                },
+                                child: const AuthButton(
+                                  text: 'Sign In',
+                                ),
+                              ),
                               const Gap(20),
                               const DividerWidget(),
                               const Gap(20),
@@ -158,4 +172,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

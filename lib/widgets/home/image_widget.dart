@@ -1,6 +1,6 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers, deprecated_member_use, library_private_types_in_public_api
+// ignore_for_file: no_leading_underscores_for_local_identifiers, deprecated_member_use, library_private_types_in_public_api, unnecessary_null_comparison
 
-import 'package:color_extractor/widgets/video_images.dart';
+import 'package:color_extractor/widgets/home/video_images.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -42,7 +42,7 @@ class _GenThumbnailImageState extends State<GenThumbnailImage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Generating the thumbnail for: ${widget.thumbnailRequest.video}...",
+                "Generating the Colors for: ${widget.thumbnailRequest.video}...",
               ),
               const SizedBox(
                 height: 10.0,

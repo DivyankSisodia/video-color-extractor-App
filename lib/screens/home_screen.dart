@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
-import '../widgets/image_widget.dart';
-import '../widgets/video_images.dart';
+import '../widgets/home/image_widget.dart';
+import '../widgets/home/video_images.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

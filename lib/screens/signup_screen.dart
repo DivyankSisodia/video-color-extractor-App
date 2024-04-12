@@ -1,7 +1,7 @@
 import 'package:color_extractor/screens/home_screen.dart';
 import 'package:color_extractor/screens/login_screen.dart';
-import 'package:color_extractor/widgets/auth_button.dart';
-import 'package:color_extractor/widgets/text_fields.dart';
+import 'package:color_extractor/widgets/auth/auth_button.dart';
+import 'package:color_extractor/widgets/auth/text_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
