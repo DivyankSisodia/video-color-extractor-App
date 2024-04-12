@@ -32,6 +32,7 @@ dependencies:
   file_picker: ^8.0.0+1
   flutter:
     sdk: flutter
+  gap: ^3.0.1
   google_fonts: ^6.2.1
   image: ^4.1.7
   image_picker: ^1.0.8

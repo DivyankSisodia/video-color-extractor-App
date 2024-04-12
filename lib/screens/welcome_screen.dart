@@ -1,5 +1,8 @@
+import 'package:color_extractor/screens/login_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/button_widget.dart';
@@ -46,14 +49,35 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          const Flexible(
+          Flexible(
             flex: 1,
             child: Align(
               alignment: Alignment.bottomRight,
               child: Row(
                 children: [
-                  Expanded(child: ButtonWidget()),
-                  Expanded(child: ButtonWidget()),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()));
+                      },
+                      child: const ButtonWidget(
+                        textColor: Colors.white,
+                        bgColor: Colors.transparent,
+                        text: 'Sign In',
+                      ),
+                    ),
+                  ),
+                  const Gap(10),
+                  const Expanded(
+                    child: ButtonWidget(
+                      textColor: Colors.black,
+                      bgColor: Colors.white,
+                      text: 'Sign Up',
+                    ),
+                  ),
                 ],
               ),
             ),
