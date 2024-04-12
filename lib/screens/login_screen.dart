@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../widgets/auth_button.dart';
+import '../widgets/divider_widget.dart';
+import '../widgets/forgot_password.dart';
+import '../widgets/social_media_icon.dart';
+import '../widgets/text_fields.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -17,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 100,
+        leading: const BackButton(),
         backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
@@ -64,141 +72,36 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               const Gap(30.0),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: 'Email',
-                                  prefixIcon: Icon(Icons.email),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
-                                    ),
-                                  ),
-                                ),
+                              const TextFormFieldWidget(
+                                hintText: 'Email',
+                                prefixIcon: Icons.email,
                               ),
                               const Gap(20),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: 'Password',
-                                  prefixIcon: Icon(Icons.password),
-                                  suffixIcon: Icon(Icons.visibility),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
-                                    ),
-                                  ),
-                                ),
+                              const TextFormFieldWidget(
+                                hintText: 'Password',
+                                prefixIcon: Icons.password,
+                                suffixIcon: Icons.visibility,
                               ),
                               const Gap(3),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Forgot Password?',
-                                    style: TextStyle(
-                                      color: Colors.deepPurpleAccent,
-                                      fontFamily:
-                                          GoogleFonts.poppins().fontFamily,
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              const ForgotPassword(),
                               const Gap(20),
-                              Container(
-                                height: 50.0,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 73, 126, 218),
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Sign In',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontFamily:
-                                          GoogleFonts.poppins().fontFamily,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              const AuthButton(text: 'Sign In',),
                               const Gap(20),
-                              Row(
-                                // Divider widget not working :<
-
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 2,
-                                    color: Colors.black54,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0),
-                                    child: Text(
-                                      'Or Sign In with',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontFamily:
-                                            GoogleFonts.poppins().fontFamily,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16.0,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 100,
-                                    height: 2,
-                                    color: Colors.black54,
-                                  ),
-                                ],
-                              ),
+                              const DividerWidget(),
                               const Gap(20),
-                              Row(
+                              const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/google.png',
-                                      height: 40.0,
-                                      width: 40.0,
-                                    ),
+                                  SocialMediaIcons(
+                                    imagePath: 'assets/images/google.png',
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/facebook.jpeg',
-                                      height: 40.0,
-                                      width: 40.0,
-                                      fit: BoxFit.cover,
-                                    ),
+                                  SocialMediaIcons(
+                                    imagePath: 'assets/images/facebook.jpeg',
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/twitter.png',
-                                      height: 40.0,
-                                      width: 40.0,
-                                      fit: BoxFit.cover,
-                                    ),
+                                  SocialMediaIcons(
+                                    imagePath: 'assets/images/twitter.png',
                                   ),
                                 ],
                               ),
@@ -255,3 +158,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
