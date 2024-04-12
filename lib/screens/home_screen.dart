@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_final_fields, library_private_types_in_public_api, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
@@ -39,6 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final _settings = <Widget>[
+      Text('Increase the quality of the image',
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: GoogleFonts.poppins().fontFamily)),
       Slider(
         value: _quality * 1.0,
         onChanged: (v) => setState(() {
@@ -79,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           for (var i in _settings) i,
           Expanded(
+            flex: 6,
             child: Container(
               color: Colors.grey[300],
               child: Scrollbar(
@@ -91,65 +99,87 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          Expanded(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 10),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final ImagePicker _picker = ImagePicker();
+                        XFile? video = await _picker.pickVideo(
+                            source: ImageSource.gallery);
+                        if (video != null) {
+                          setState(() {
+                            _video.text = video.path;
+                          });
+                        }
+                      },
+                      child: const Column(
+                        children: [
+                          Icon(Icons.camera),
+                          Text('Upload Video from gallery')
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Gap(20),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 5.0,
+                      vertical: 10,
+                    ),
+                    child: GestureDetector(
+                      onTap: () async {
+                        setState(() {
+                          _futureImage = GenThumbnailImage(
+                            thumbnailRequest: ThumbnailRequest(
+                              video: _video.text,
+                              thumbnailPath: _tempDir,
+                              imageFormat: _format,
+                              maxHeight: _sizeH,
+                              maxWidth: _sizeW,
+                              timeMs: _timeMs,
+                              quality: _quality,
+                            ),
+                            key: UniqueKey(),
+                          );
+                        });
+                      },
+                      child: const Column(
+                        children: [
+                          Icon(Icons.file_present_sharp),
+                          Text('generate colors')
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ))
         ],
       ),
       drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            AppBar(
-              title: const Text("Settings"),
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => Navigator.pop(context),
-                )
-              ],
-            ),
-            for (var i in _settings) i,
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: <Widget>[
+              AppBar(
+                title: const Text("Settings"),
+                actions: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
+                  )
+                ],
+              ),
+              for (var i in _settings) i,
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          FloatingActionButton(
-            onPressed: () async {
-              final ImagePicker _picker = ImagePicker();
-              XFile? video =
-                  await _picker.pickVideo(source: ImageSource.gallery);
-              if (video != null) {
-                setState(() {
-                  _video.text = video.path;
-                });
-              }
-            },
-            tooltip: "Select a video from gallery",
-            child: const Icon(Icons.videocam),
-          ),
-          const SizedBox(width: 5.0),
-          const SizedBox(width: 5.0),
-          FloatingActionButton(
-            tooltip: "Generate a file of thumbnail",
-            onPressed: () async {
-              setState(() {
-                _futureImage = GenThumbnailImage(
-                  thumbnailRequest: ThumbnailRequest(
-                    video: _video.text,
-                    thumbnailPath: _tempDir,
-                    imageFormat: _format,
-                    maxHeight: _sizeH,
-                    maxWidth: _sizeW,
-                    timeMs: _timeMs,
-                    quality: _quality,
-                  ),
-                  key: UniqueKey(),
-                );
-              });
-            },
-            child: const Text("File"),
-          ),
-        ],
       ),
     );
   }

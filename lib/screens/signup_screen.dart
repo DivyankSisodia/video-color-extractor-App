@@ -1,16 +1,19 @@
-import 'package:color_extractor/screens/signup_screen.dart';
+import 'package:color_extractor/screens/home_screen.dart';
+import 'package:color_extractor/screens/login_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -55,12 +58,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               const Gap(20),
                               Text(
-                                'Welcome Back!',
+                                'Create Account',
                                 style: TextStyle(
                                   fontSize: 35.0,
                                   fontFamily: GoogleFonts.poppins().fontFamily,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.black.withOpacity(0.8),
+                                  color: Colors.black,
                                 ),
                               ),
                               const Gap(30.0),
@@ -88,126 +91,57 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               ),
-                              const Gap(3),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Forgot Password?',
-                                    style: TextStyle(
-                                      color: Colors.deepPurpleAccent,
-                                      fontFamily:
-                                          GoogleFonts.poppins().fontFamily,
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 14.0,
+                              const Gap(20),
+                              TextFormField(
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  hintText: 'Confirm Password',
+                                  prefixIcon: Icon(CupertinoIcons.padlock),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10.0),
                                     ),
                                   ),
                                 ),
                               ),
-                              const Gap(20),
-                              Container(
-                                height: 50.0,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 73, 126, 218),
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Sign In',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontFamily:
-                                          GoogleFonts.poppins().fontFamily,
-                                      fontWeight: FontWeight.w600,
+                              const Gap(25),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const HomeScreen(),
                                     ),
+                                  );
+                                },
+                                child: Container(
+                                  height: 50.0,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(255, 73, 126, 218),
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                ),
-                              ),
-                              const Gap(20),
-                              Row(
-                                // Divider widget not working :<
-
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 2,
-                                    color: Colors.black54,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0),
+                                  child: Center(
                                     child: Text(
-                                      'Or Sign In with',
+                                      'Sign Up',
                                       style: TextStyle(
-                                        color: Colors.grey,
+                                        color: Colors.white,
+                                        fontSize: 20,
                                         fontFamily:
                                             GoogleFonts.poppins().fontFamily,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 16.0,
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 100,
-                                    height: 2,
-                                    color: Colors.black54,
-                                  ),
-                                ],
+                                ),
                               ),
                               const Gap(20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/google.png',
-                                      height: 40.0,
-                                      width: 40.0,
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/facebook.jpeg',
-                                      height: 40.0,
-                                      width: 40.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/twitter.png',
-                                      height: 40.0,
-                                      width: 40.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const Gap(30),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Don\'t have an account?',
+                                    'Already have an account?',
                                     style: TextStyle(
                                       color: Colors.grey,
                                       fontFamily:
@@ -222,12 +156,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const SignUpScreen(),
+                                              const LoginScreen(),
                                         ),
                                       );
                                     },
                                     child: Text(
-                                      ' Sign Up',
+                                      ' Sign In',
                                       style: TextStyle(
                                         color: const Color.fromARGB(
                                             255, 90, 90, 90),
@@ -237,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         fontSize: 19.0,
                                       ),
                                     ),
-                                  ),
+                                  )
                                 ],
                               )
                             ],
