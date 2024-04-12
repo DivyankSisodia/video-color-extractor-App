@@ -89,6 +89,8 @@ Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
           await PaletteGenerator.fromImageProvider(_image.image,
               size: Size(
                   info.image.width.toDouble(), info.image.height.toDouble()));
+
+// sorted the colors based on their population also creaTED a list of the top three dominant colors
       final List<PaletteColor> dominantColors = paletteGenerator.paletteColors
           .toList()
         ..sort((a, b) => b.population.compareTo(a.population));

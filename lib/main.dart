@@ -1,8 +1,6 @@
 import 'package:color_extractor/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/login_screen.dart';
-
 void main() {
   runApp(const MyApp());
 }

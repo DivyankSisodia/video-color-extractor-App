@@ -69,7 +69,7 @@ class _GenThumbnailImageState extends State<GenThumbnailImage> {
                 height: 1.0,
               ),
               SizedBox(
-                height: 300, // Adjust the height as needed
+                height: 300, 
                 child: FutureBuilder(
                   future: _initializeVideoPlayerFuture,
                   builder: (context, snapshot) {

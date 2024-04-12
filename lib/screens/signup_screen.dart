@@ -1,5 +1,7 @@
 import 'package:color_extractor/screens/home_screen.dart';
 import 'package:color_extractor/screens/login_screen.dart';
+import 'package:color_extractor/widgets/auth_button.dart';
+import 'package:color_extractor/widgets/text_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(),
         backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
@@ -67,75 +70,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                               const Gap(30.0),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: 'Email',
-                                  prefixIcon: Icon(Icons.email),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
-                                    ),
-                                  ),
-                                ),
+                              const TextFormFieldWidget(
+                                  hintText: 'Email', prefixIcon: Icons.email),
+                              const Gap(20),
+                              const TextFormFieldWidget(
+                                hintText: 'Password',
+                                prefixIcon: Icons.password,
+                                suffixIcon: Icons.visibility,
                               ),
                               const Gap(20),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: 'Password',
-                                  prefixIcon: Icon(Icons.password),
-                                  suffixIcon: Icon(Icons.visibility),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Gap(20),
-                              TextFormField(
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  hintText: 'Confirm Password',
-                                  prefixIcon: Icon(CupertinoIcons.padlock),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
-                                    ),
-                                  ),
-                                ),
+                              const TextFormFieldWidget(
+                                hintText: 'Confirm Pass',
+                                prefixIcon: CupertinoIcons.padlock,
                               ),
                               const Gap(25),
                               GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  height: 50.0,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 73, 126, 218),
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Sign Up',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontFamily:
-                                            GoogleFonts.poppins().fontFamily,
-                                        fontWeight: FontWeight.w600,
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen(),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                                    );
+                                  },
+                                  child: const AuthButton(text: 'Sign Up')),
                               const Gap(20),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
